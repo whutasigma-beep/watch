@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VERA | Watch Together</title>
+    <meta name="description" content="VERA is a modern watch-together platform for synchronized video rooms." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-wrap">
+          <div class="brand-mark">V</div>
+          <div>
+            <div class="brand-name">VERA</div>
+            <div class="brand-tag">watch together</div>
+          </div>
+        </div>
+        <div id="connectionBadge" class="status-dot offline">
+          <span class="status-indicator"></span>
+          <span id="connectionText">Connecting</span>
+        </div>
+      </header>
+
+      <main>
+        <section id="landingSection" class="landing-panel">
+          <div class="hero-copy">
+            <span class="eyebrow">SYNCED STREAMS</span>
+            <h1>Watch together, anywhere.</h1>
+            <p>
+              Create a room, invite friends, and watch supported direct video streams in perfect sync.
+            </p>
+          </div>
+
+          <div class="entry-card">
+            <label for="displayNameInput">Display name</label>
+            <input id="displayNameInput" type="text" maxlength="24" placeholder="Enter your name" />
+
+            <div class="join-controls">
+              <button id="createRoomBtn" class="primary-btn">Create Room</button>
+              <div class="or-divider"><span>or</span></div>
+              <div class="join-row">
+                <input id="roomCodeInput" type="text" maxlength="12" placeholder="Room code" />
+                <button id="joinRoomBtn" class="secondary-btn">Join</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="roomSection" class="room-panel hidden">
+          <aside class="sidebar">
+            <div class="sidebar-header">
+              <div>
+                <div class="sidebar-label">Room</div>
+                <h3 id="roomIdLabel">--</h3>
+              </div>
+              <button id="copyInviteBtn" class="link-btn">Copy invite</button>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-head">
+                <span>Participants</span>
+                <span id="participantCount" class="count-pill">0</span>
+              </div>
+              <div id="participantsList" class="participants-list"></div>
+            </div>
+
+            <div class="panel-card chat-card">
+              <div class="panel-head">
+                <span>Chat</span>
+              </div>
+              <div id="chatMessages" class="chat-messages"></div>
+              <div class="chatcomposer">
+                <input id="chatInput" type="text" maxlength="500" placeholder="Send a message..." />
+                <button id="sendChatBtn" class="primary-btn small">Send</button>
+              </div>
+            </div>
+          </aside>
+
+          <div class="main-player-area">
+            <div class="player-shell">
+              <video id="videoPlayer" controls playsinline crossorigin="anonymous"></video>
+              <div id="playerStatus" class="player-status hidden"></div>
+            </div>
+
+            <div class="controls-strip">
+              <div class="control-group left">
+                <button id="playPauseBtn" class="icon-btn">Pause</button>
+                <button id="seekBackBtn" class="icon-btn small">-10s</button>
+                <button id="seekForwardBtn" class="icon-btn small">+10s</button>
+                <button id="leaveRoomBtn" class="secondary-btn danger">Leave</button>
+              </div>
+              <div class="control-group right">
+                <label class="select-wrap">
+                  <span>Quality</span>
+                  <select id="qualitySelect">
+                    <option value="auto">Auto</option>
+                  </select>
+                </label>
+                <label class="select-wrap">
+                  <span>Audio</span>
+                  <select id="audioSelect">
+                    <option value="default">Default</option>
+                  </select>
+                </label>
+                <label class="select-wrap">
+                  <span>Subtitles</span>
+                  <select id="subtitleSelect">
+                    <option value="off">Off</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <div class="video-loader-panel">
+              <div class="field-stack">
+                <label for="videoUrlInput">Video URL</label>
+                <input id="videoUrlInput" type="url" placeholder="https://example.com/video.m3u8" />
+              </div>
+              <div class="field-stack subtitle-url-stack">
+                <label for="subtitleUrlInput">Subtitle URL (optional)</label>
+                <input id="subtitleUrlInput" type="url" placeholder="https://example.com/subtitles.vtt" />
+              </div>
+              <button id="loadVideoBtn" class="primary-btn">Load Video</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.1.5/dist/hls.min.js"></script>
+    <script src="/script.js"></script>
+  </body>
+</html>
